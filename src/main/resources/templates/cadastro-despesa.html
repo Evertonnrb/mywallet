@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar despesas</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container container-fluid">
+            <div class="navbar-header">
+                <p>Cadastrar</p>
+            </div>
+        </div>
+    </nav>
+
+    <form action="/despesas" class="form-horizontal" method="post" >
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <h1 class="panel-title">Cadastrar despesa</h1>
+                    <a href="#" class="btn btn-link">Pesquisar</a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="valorGasto" class="col-sm-2 control-label">Valor gasto</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="valorGasto" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imposto" class="col-sm-2 control-label">Valor imposto</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="imposto" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="local" class="col-sm-2 control-label">Local</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="local" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tipoDespesa" class="col-sm-2 control-label">Local</label>
+                    <div class="col-sm-4">
+                        <select name="" id="tipoDespesa" class="form-control">
+                            <option value="selecione">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formaPagamento" class="col-sm-2 control-label">Local</label>
+                    <div class="col-sm-4">
+                        <select name="" id="formaPagamento"  class="form-control">
+                            <option value="selecione">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="data" class="col-sm-2 control-label">Data</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="data" name="data" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="/js/jquery.maskMoney.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
