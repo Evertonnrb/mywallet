@@ -27,7 +27,6 @@ public class Despesa extends GenericId {
     @NumberFormat(pattern = "#,##0.00")
     @DecimalMin(value = "0.01")
     @DecimalMax(value = "99999.99")
-    @NotEmpty(message = "Campo deve ser informado")
     @Column(name = "valor_gasto")
     private BigDecimal valorGasto;
 

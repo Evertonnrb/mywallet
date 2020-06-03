@@ -9,73 +9,94 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container container-fluid">
-            <div class="navbar-header">
-                <p>Cadastrar</p>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <p>Cadastrar</p>
+        </div>
+    </div>
+</nav>
+<!--form cadastrar despesas-->
+<form action="/despesas" class="form-horizontal" method="post" th:object="${despesa}">
+    <!--alert-->
+    <div class="alert alert-success alert-dismissable" role="alert" th:if="${!#strings.isEmpty(msg)}">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <span th:text="${msg}">Titulo cadastrado</span>
+    </div>
+
+    <!--erros-->
+    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+        <div th:each="detailErrors : ${#fields.detailedErrors()}">
+            <span th:text="${detailErrors.message}"></span>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <!--inicio pesquisa-->
+        <div class="panel-heading">
+            <div class="clearfix">
+                <h1 class="panel-title">Cadastrar despesa</h1>
+                <a href="#" class="btn btn-link">Pesquisar</a>
             </div>
         </div>
-    </nav>
+        <!--fim pesquisa-->
+        <!--inicio campos-->
 
-    <form action="/despesas" class="form-horizontal" method="post" >
-        <div class="panel panel-default">
+        <input type="hidden" th:field="*{codigo}">
 
-            <div class="panel-heading">
-                <div class="clearfix">
-                    <h1 class="panel-title">Cadastrar despesa</h1>
-                    <a href="#" class="btn btn-link">Pesquisar</a>
-                </div>
-            </div>
-
-            <div class="panel-body">
-                <div class="form-group">
-                    <label for="valorGasto" class="col-sm-2 control-label">Valor gasto</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="valorGasto" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="imposto" class="col-sm-2 control-label">Valor imposto</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="imposto" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="local" class="col-sm-2 control-label">Local</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="local" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tipoDespesa" class="col-sm-2 control-label">Local</label>
-                    <div class="col-sm-4">
-                        <select name="" id="tipoDespesa" class="form-control">
-                            <option value="selecione">Selecione</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="formaPagamento" class="col-sm-2 control-label">Local</label>
-                    <div class="col-sm-4">
-                        <select name="" id="formaPagamento"  class="form-control">
-                            <option value="selecione">Selecione</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="data" class="col-sm-2 control-label">Data</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="data" name="data" class="form-control">
-                    </div>
+        <div class="panel-body">
+            <div class="form-group" th:classappend="${#fields.hasErrors('valorGasto')} ? 'has-error'">
+                <label for="valorGasto" class="col-sm-2 control-label">Valor gasto</label>
+                <div class="col-sm-2">
+                    <input type="text" id="valorGasto" th:field="*{valorGasto}" class="form-control js-currency">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                <label for="imposto" class="col-sm-2 control-label">Valor imposto</label>
+                <div class="col-sm-2">
+                    <input type="text" id="imposto"  th:field="*{imposto}" class="form-control js-currency">
+                </div>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('local')} ? 'has-error'">
+                <label for="local" class="col-sm-2 control-label">Local</label>
+                <div class="col-sm-2">
+                    <input type="text" id="local" class="form-control" th:field="*{local}">
+                </div>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('tipoDespesa')} ? 'has-error'">
+                <label for="tipoDespesa" class="col-sm-2 control-label">Tipo de despesa</label>
+                <div class="col-sm-4">
+                    <select id="tipoDespesa" class="form-control" name="tipoDespesa">
+                        <option th:each="tipo : ${tiposDisponiveis}"
+                            th:value="${tipo}" th:text="${tipo.tipoDespesa}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('formaPagamento')} ? 'has-error'">
+                <label for="formaPagamento" class="col-sm-2 control-label">Forma de pagamento</label>
+                <div class="col-sm-4">
+                    <select name="formaPagamento" id="formaPagamento" class="form-control">
+                        <option th:each="pagamento : ${tipoFormaPagamento}"
+                            th:value="${pagamento}" th:text="${pagamento.formaPagamento}">Selecione</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('data')} ? 'has-error'">
+                <label for="data" class="col-sm-2 control-label">Data</label>
+                <div class="col-sm-2">
+                    <input type="text" id="data" name="data" class="form-control"
+                           data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+                           data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom">
                 </div>
             </div>
         </div>
-    </form>
+        <!--fim campos-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>
 
 <script src="/js/jquery-3.5.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
