@@ -50,6 +50,14 @@ public class DespesaController {
         return "redirect:/despesas/novo";
     }
 
+    @RequestMapping
+    public ModelAndView despesas(){
+        List<Despesa> despesasLista = despesas.findAll();
+        ModelAndView mv = new ModelAndView("despesas");
+        mv.addObject("despesas",despesasLista);
+        return mv;
+    }
+
     @ModelAttribute(name = "tiposDisponiveis")
     public List<Tipo> tipoDespesaDisponivel(){
         return Arrays.asList(Tipo.values());

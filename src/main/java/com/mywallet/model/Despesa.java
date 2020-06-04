@@ -40,14 +40,20 @@ public class Despesa extends GenericId {
     @Size(max = 80, message = "Campo não deve ter mais que 80 caracteres")
     private String local;
 
+    @Column(name = "tipo_despesa")
     @Enumerated(EnumType.STRING)
     private Tipo tipoDespesa;
 
+    @Column(name = "forma_pagamento")
     @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date data;
+
+    public boolean hasImposto(){
+        return this.imposto == null;
+    }
 
 }

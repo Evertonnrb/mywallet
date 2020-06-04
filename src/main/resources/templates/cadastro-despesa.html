@@ -34,8 +34,8 @@
         <!--inicio pesquisa-->
         <div class="panel-heading">
             <div class="clearfix">
-                <h1 class="panel-title">Cadastrar despesa</h1>
-                <a href="#" class="btn btn-link">Pesquisar</a>
+                <h1 class="panel-title h1-pesquisar">Cadastrar despesa</h1>
+                <a href="/despesas" class="btn btn-link link-pesquisar">Pesquisar</a>
             </div>
         </div>
         <!--fim pesquisa-->
@@ -75,8 +75,11 @@
                 <label for="formaPagamento" class="col-sm-2 control-label">Forma de pagamento</label>
                 <div class="col-sm-4">
                     <select name="formaPagamento" id="formaPagamento" class="form-control">
-                        <option th:each="pagamento : ${tipoFormaPagamento}"
-                            th:value="${pagamento}" th:text="${pagamento.formaPagamento}">Selecione</option>
+                        <optgroup>
+                            <option value="Selecione" disabled>Selecione</option>
+                            <option th:each="pagamento : ${tipoFormaPagamento}"
+                                th:value="${pagamento}" th:text="${pagamento.formaPagamento}">Selecione</option>
+                        </optgroup>
                     </select>
                 </div>
             </div>
@@ -93,6 +96,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="reset" class="btn">Limpar</button>
             </div>
         </div>
     </div>
