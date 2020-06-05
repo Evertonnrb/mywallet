@@ -3,13 +3,13 @@ package com.mywallet.model.enuns;
 public enum Status {
     RECEBIDO("Recebido"), PENDENDE("Pendente");
 
-    private String status;
+    private String situacao;
 
-    Status(String status) {
-        this.status = status;
+    Status(String situacao) {
+        this.situacao = situacao;
     }
 
-    public String getStatus() {
-        return status;
+    public String getSituacao() {
+        return situacao;
     }
 }

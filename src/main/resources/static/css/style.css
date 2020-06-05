@@ -19,3 +19,21 @@
     font-weight: bold;
     color: #696969;
 }
+.logo-menu{
+    color: #fff;
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-left: 160px;
+    margin-top: 15px;
+    margin-right: 50px;
+    padding: 8px;
+}
+.logo-menu ul{
+    display: inline-block;
+    margin-left:80px;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+.logo-menu li{
+    margin-left: 5px;
+}

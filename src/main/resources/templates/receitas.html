@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receitas</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css">
+</head>
+<body>
+<!--inicio navbar-->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <h1 style="color: #fff;font-size: 22px;margin-top:-10px">LOGO</h1>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse logo-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/despesas/novo">Cadastrar despesas</a></li>
+                <li><a href="/despesas">Despesas</a></li>
+                <li><a href="/receitas">Receitas</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--fom navbar-->
+<!--inicio painel-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title">Pesquisar receitas</h1>
+        </div>
+        <div class="panel-body">
+            <!--inicio tabela codigo descricao data valor status -->
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center col-md-1">#</th>
+                            <th>Descrição</th>
+                            <th class="text-center col-md-2">Data</th>
+                            <th class="text-center col-md-2">Valor</th>
+                            <th class="text-center col-md-2">Status</th>
+                            <th class="text-center col-md-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="6" th:if="${#lists.isEmpty((receitaList))}">Nenhum titulo encontrado ;.(</td>
+                    </tr>
+                        <tr th:each="receitas : ${receitaList}">
+                            <td class="text-center col-md-1" th:text="${receitas.codigo}"></td>
+                            <td th:text="${receitas.descricao}"></td>
+                            <td class="text-center col-md-2" th:text="${{receitas.data}}"></td>
+                            <td class="text-center col-md-2" th:text="|R$${{receitas.valor}}|"></td>
+                            <td class="text-center col-md-2" >
+                                <span class="label label-success" th:text="${receitas.status.situacao}"></span>
+                            </td>
+                            <td class="text-center col-md-2">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!--fim tabela-->
+        </div>
+    </div>
+<!--fim painel-->
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="/js/jquery.maskMoney.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -14,6 +14,14 @@
         <div class="navbar-header">
             <p>Cadastrar</p>
         </div>
+        <div class="collapse navbar-collapse logo-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/receitas/novo/">Cadastrar receita</a></li>
+                <li><a href="/receitas">Receitas</a></li>
+                <li><a href="/despesas">Despesas</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 <!--form cadastrar despesas-->
@@ -53,7 +61,7 @@
             <div class="form-group">
                 <label for="imposto" class="col-sm-2 control-label">Valor imposto</label>
                 <div class="col-sm-2">
-                    <input type="text" id="imposto"  th:field="*{imposto}" class="form-control js-currency">
+                    <input type="text" id="imposto" th:field="*{imposto}" class="form-control js-currency">
                 </div>
             </div>
             <div class="form-group" th:classappend="${#fields.hasErrors('local')} ? 'has-error'">
@@ -67,7 +75,7 @@
                 <div class="col-sm-4">
                     <select id="tipoDespesa" class="form-control" name="tipoDespesa">
                         <option th:each="tipo : ${tiposDisponiveis}"
-                            th:value="${tipo}" th:text="${tipo.tipoDespesa}"></option>
+                                th:value="${tipo}" th:text="${tipo.tipoDespesa}"></option>
                     </select>
                 </div>
             </div>
@@ -78,7 +86,8 @@
                         <optgroup>
                             <option value="Selecione" disabled>Selecione</option>
                             <option th:each="pagamento : ${tipoFormaPagamento}"
-                                th:value="${pagamento}" th:text="${pagamento.formaPagamento}">Selecione</option>
+                                    th:value="${pagamento}" th:text="${pagamento.formaPagamento}">Selecione
+                            </option>
                         </optgroup>
                     </select>
                 </div>
